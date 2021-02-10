@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>My D3 Viz</title>
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    crossorigin="anonymous" />
+</head>
+
+<body>
+
+  <div id="container" class="container-fluid mt-3">
+
+    <!-- Cabecalho 1 -> Titulo geral -->
+    <div id="cabecalho1" class="row" style="display: flex">
+      <div class="col" style="display: flex">
+        <h1 class="ml-3" id="titulo1">Visualização: PIB e Remuneração em Portugal e na Europa</h1>
+        <button type="button" class="btn btn-info btn-sm m-3" data-toggle="modal" data-target="#myModal">i</button>
+      </div>
+    </div>
+    <!-- row -->
+
+    <!-- Cabecalho 2 -> Por ano -->
+    <div id="cabecalho2" class="row" style="display: none">
+      <div class="col"></div>
+      <div id="ano-group" class="w-900 d-flex">
+        <button id="botaoAnoAnterior" type="button" class="btn btn-light btn-sm m-3" data-toggle="tooltip"
+          data-placement="bottom" data-trigger="hover" title="Ano anterior">
+          <i class="bi bi-arrow-bar-left"></i>
+        </button>
+        <h1 id="ano">Ano</h1>
+        <button id="botaoAnoSeguinte" type="button" class="btn btn-light btn-sm m-3" data-toggle="tooltip"
+          data-placement="bottom" data-trigger="hover" title="Ano seguinte">
+          <i class="bi bi-arrow-bar-right"></i>
+        </button>
+        <h1 id="titulo2">Título 2</h1>
+        <button type="button" class="btn btn-info btn-sm m-3" data-toggle="modal" data-target="#myModal">i</button>
+      </div>
+      <div class="col"></div>
+    </div>
+    <!-- row -->
+
+    <!-- Cabecalho 3 -> Todos os anos -->
+    <div id="cabecalho3" class="row" style="display: none">
+      <div class="col"></div>
+      <div class="w-900" style="display: flex">
+        <h1 class="ml-3" id="titulo3">Titulo 3</h1>
+        <button type="button" class="btn btn-info btn-sm m-3" data-toggle="modal" data-target="#myModal">i</button>
+      </div>
+      <div class="col"></div>
+    </div>
+    <!-- row -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-show="true" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-dialog-centered w-75 mw-100" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <button type="button" class="btn btn-info btn-sm m-1 active">i</button>
+              Visualização: PIB e Remuneração em Portugal e na Europa</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <p>
+              Esta visualização disponibiliza informação que permite ao utilizador explorar dados relativamente aos anos do período 1995 a 2019, de Portugal e dos restantes países europeus, sobre:<br>
+              - O Produto Interno Bruto (PIB);<br>
+              - O PIB per capita;<br>
+              - A Remuneração dos Empregados per capita.</p>
+            </p>
+
+            <p>
+              Com a apresentação desta informação pretende-se facilitar a obtenção de respostas a perguntas como:<br>
+            - Quais os países com maior e menor PIB e qual a comparação entre eles?<br>
+            - Como evoluiu o PIB nos diferentes países ao longo dos anos?<br>
+            - Que países criam mais e menos riqueza por pessoa (PIB per capita), em paridades de poder de compra?<br>
+            - Como eveluiu o PIB per capita de cada país ao longo dos anos?<br>
+            - Se o PIB per capita em 1995 (base 100) fosse igual para todos os países, como teria evoluído, assumindo taxas de crescimento iguais?<br>
+            - Em que países se recebe, em média, por pessoa, mais e menos pelo trabalho, em paridades de poder de compra?<br>
+            - Qual a relação entre a riqueza produzida por pessoa e a remuneração média dos empregados, em cada país da europa e como evoluiu ao longo do tempo?
+            </p>
+            
+            <p>
+              Interacção:<br>
+              - No gráficos anuais, clique nos botões "Ano seguinte" e "Ano anterior" para visualizar a informação de outro ano;<br>
+              - Passe com o rato por cima dos dados para ter mais informação (tooltip);<br>
+              - Passe com o rato por cima da legenda (quando existe) para ter mais informação.
+            </p>
+
+            <p>Unidades:<br>
+              PIB - em milhões de euros<br>
+              PIB per capita (PPS) - em paridades de poder de compra<br>
+              Remuneração dos empregados per capita (PPS) - em paridades de poder de compra
+            </p>
+
+            <p>Conceitos:<br>
+              > Paridade de Poder de Compra Padrão (PPS) - PPS é a sigla de Purchasing Power Standard, uma moeda fictícia que significa «paridade de poder de compra padrão» em português. Serve para comparar os níveis de bem-estar e de despesa entre países, anulando a diferença dos níveis de preços. Os valores expressos em PPS indicam em que país o poder de compra é mais elevado, por exemplo, uma vez que esta moeda fictícia permite comprar exactamente a mesma quantidade de produtos em qualquer país.<br>
+              > Produto Interno Bruto (PIB) - O produto interno bruto (PIB) é a medida habitualmente utilizada para avaliar o desempenho de uma economia e compará-la com outras. Pode dizer-se simplesmente que o PIB é a riqueza que um país consegue criar. Esta riqueza resulta das actividades quotidianas de todos – sejam pessoas, empresas ou outras entidades públicas e privadas – como: o que se produz, o que se compra, o que se investe ou o que se exporta.
+              O PIB serve de referência às políticas económicas em diversos domínios como o desenvolvimento (PIB por habitante), a produtividade (PIB por trabalhador), a sustentabilidade orçamental (dívida pública em percentagem do PIB) ou o equilíbrio externo (saldos da balança corrente e de capital em percentagem do PIB). Existem três formas de calcular o PIB: 1. Pela óptica da oferta ou da produção, considerando como a riqueza é criada; 2. Pela óptica do rendimento, considerando como é distribuída; 3. Pela óptica da procura ou da despesa, considerando como é gasta.
+            </p>
+
+            <p>Fontes:<br>
+            <a href="https://www.pordata.pt/Europa/Produto+Interno+Bruto+(Euro)-1786" target="_blank">Pordata - Produto Interno Bruto (Euro)</a><br>
+            <a href="https://www.pordata.pt/Europa/PIB+per+capita+(PPS)-1778" target="_blank">Pordata - PIB per capita (PPS)</a><br>
+            <a href="https://www.pordata.pt/Europa/Remunera%c3%a7%c3%a3o+dos+empregados+per+capita+(PPS)-1921" target="_blank">Pordata - Remuneração dos empregados per capita (PPS)</a>
+            </p>
+
+            <p>Ficheiros dados (excel) para download:<br>
+              <a href="./data/pordata - PIB (Euro).xlsx" target="_blank">Produto Interno Bruto (Euro)</a><br>
+              <a href="./data/pordata - PIB per capita.xlsx" target="_blank">PIB per capita (PPS)</a><br>
+              <a href="./data/pordata - Remuneracao dos empregados per capita (PPS).xlsx" target="_blank">Remuneração dos empregados per capita (PPS)</a>
+            </p>
+  
+            <p>Créditos:<br>
+              Visualização desenvolvida por <a href="https://github.com/pjbelo" target="_blank">Paulo Belo</a> (2021), usando as bibliotecas <a href="https://d3js.org/" target="_blank">D3</a>
+              e <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a>, no âmbito da unidade curricular Visualização da Informação com o professor
+              <a href="https://www.cienciavitae.pt/portal/2714-8A7B-5CCA" target="_blank">Pedro Pestana</a>, do Mestrado em Tecnologias e Sistemas Informáticos Web da <a href=" https://portal.uab.pt/" target="_blank">Universidade Aberta</a>
+            </p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div> 
+    <!-- Fim do Modal -->
+
+
+    <!-- Corpo do grafico / svg -->
+    <div class="row">
+      <div class="col">
+        <div id="chart" class="mx-auto" style="width: 900px; height: 600px; display: block">
+          <svg></svg>
+        </div>
+      </div>
+    </div>
+    <!-- row -->
+
+    <!-- Botoes principais -->
+    <div class="row mt-3" style="display: flex">
+      <div class="col">
+        <button id="botao-pib" type="button" class="btn btn-outline-primary btn-block">Produto Interno Bruto
+          (PIB)</button>
+      </div>
+      <div class="col">
+        <button id="botao-ppc" type="button" class="btn btn-outline-primary btn-block">PIB per capita</button>
+      </div>
+      <div class="col">
+        <button id="botao-rpc" type="button" class="btn btn-outline-primary btn-block">Remuneração per capita</button>
+      </div>
+    </div>
+    <!-- row -->
+
+    <!-- Rodape 1 -->
+    <div id="rodape1" class="row mt-2" style="display: none">
+      <div class="col"></div>
+      <div class="col">
+        <button id="botao-pib-por-ano" type="button" class="btn btn-outline-secondary btn-sm btn-block ">Por
+          ano</button>
+      </div>
+      <div class="col">
+        <button id="botao-pib-todos-anos" type="button" class="btn btn-outline-secondary btn-sm btn-block">Todos os
+          anos</button>
+      </div>
+      <div class="col"></div>
+    </div>
+    <!-- row -->
+
+    <!-- Rodape 2 -->
+    <div id="rodape2" class="row mt-2" style="display: none">
+      <div class="col"></div>
+      <div class="col">
+        <button id="botao-ppc-por-ano" type="button" class="btn btn-outline-secondary btn-sm btn-block ">Por
+          ano</button>
+      </div>
+      <div class="col">
+        <button id="botao-ppc-todos-anos" type="button" class="btn btn-outline-secondary btn-sm btn-block">Todos os
+          anos</button>
+      </div>
+      <div class="col">
+        <button id="botao-ppc-crescimento" type="button" class="btn btn-outline-secondary btn-sm btn-block">Crescimento
+          base 100</button>
+      </div>
+      <div class="col"></div>
+    </div>
+    <!-- row -->
+
+    <!-- Rodape 3 -->
+    <div id="rodape3" class="row mt-2" style="display: none">
+      <div class="col"></div>
+      <div class="col">
+        <button id="botao-rpc-por-ano" type="button" class="btn btn-outline-secondary btn-sm btn-block ">Por
+          ano</button>
+      </div>
+      <div class="col">
+        <button id="botao-rpc-todos-anos" type="button" class="btn btn-outline-secondary btn-sm btn-block">Todos os
+          anos</button>
+      </div>
+      <div class="col">
+        <button id="botao-rpc-crescimento" type="button" class="btn btn-outline-secondary btn-sm btn-block">Crescimento
+          base 100</button>
+      </div>
+      <div class="col">
+        <button id="botao-rpc-rep" type="button" class="btn btn-outline-secondary btn-sm btn-block">Remuneração e
+          PIB</button>
+      </div>
+      <div class="col"></div>
+    </div>
+    <!-- row -->
+
+  </div>
+  <!-- container -->
+  
+</body>
+
+<script src="./lib/d3.v6.5.0.min.js"></script>
+<script src="./lib/jquery-3.5.1.min.js"></script>
+<script src="./lib/bootstrap.bundle.min.js"></script>
+<script src="./app/main.js" type="module"></script>
+
+</html>
